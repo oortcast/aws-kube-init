@@ -1,0 +1,28 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: high-iops-ssd
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: io1
+  iopsPerGB: "20"
+mountOptions:
+  - debug
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: hdd       
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: st1
+mountOptions:
+  - debug
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: cold-hdd
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: sc1
